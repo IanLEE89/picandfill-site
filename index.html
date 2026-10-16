@@ -64,12 +64,35 @@
     .modules { background:#f4efe7; }
     .module-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
     .module { padding:25px; border-radius:22px; background:white; }
+    .module-showcases { display:grid; gap:20px; }
+    .module-showcase { display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:center; padding:30px; border:1px solid var(--line); border-radius:25px; background:white; }
+    .module { padding:0; }
     .module .tag { font-size:12px; font-weight:800; letter-spacing:.05em; color:var(--green); }
     .module:nth-child(2) .tag { color:#ad5530; }.module:nth-child(3) .tag { color:#526894; }
     .module h3 { margin:8px 0; font-size:22px; }.module p { margin:0;color:var(--muted);font-size:14px; }
     .module ul { list-style:none; margin:16px 0 0; padding:0; }
     .module li { padding:8px 0; border-top:1px solid #f0ece6; color:#596174; font-size:13px; }
     .module li:before { content:"·"; color:var(--peach); font-weight:900; margin-right:8px; }
+    .gallery { min-width:0; padding:22px 18px 18px; border-radius:20px; background:#f7f3ed; text-align:center; }
+    .gallery-title { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:0 auto 14px; max-width:390px; color:var(--muted); font-size:12px; }
+    .gallery-title strong { color:var(--ink); font-size:13px; }
+    .gallery-track { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-x:contain; }
+    .gallery-track::-webkit-scrollbar { display:none; }
+    .gallery-slide { flex:0 0 100%; scroll-snap-align:center; }
+    .device-frame { width:min(100%,252px); margin:0 auto; padding:9px; border:7px solid #26334c; border-radius:35px; background:#26334c; box-shadow:0 16px 34px #24304a20; }
+    .device-screen { position:relative; display:grid; place-items:center; width:100%; aspect-ratio:9/19.5; overflow:hidden; border-radius:23px; background:#fffaf3; }
+    .screen-placeholder { display:grid; place-items:center; gap:12px; width:100%; height:100%; padding:24px; color:#687184; background:linear-gradient(155deg,#fffaf3,#eef1e8); }
+    .screen-placeholder .placeholder-icon { display:grid; place-items:center; width:52px; height:52px; border-radius:17px; background:#e8eee6; color:var(--green); font-size:24px; }
+    .screen-placeholder strong { color:var(--ink); font-size:15px; }
+    .screen-placeholder span { max-width:155px; font-size:11px; line-height:1.5; }
+    .screen-image { display:block; width:100%; height:100%; object-fit:cover; }
+    .gallery-slide figcaption { min-height:48px; margin:12px auto 0; max-width:340px; color:#596174; font-size:13px; }
+    .gallery-controls { display:flex; justify-content:center; align-items:center; gap:14px; margin-top:8px; }
+    .gallery-arrow { display:grid; place-items:center; width:34px; height:34px; border:1px solid #d7d0c5; border-radius:50%; background:white; color:var(--ink); font-size:18px; cursor:pointer; }
+    .gallery-dots { display:flex; gap:7px; }
+    .gallery-dot { width:8px; height:8px; padding:0; border:0; border-radius:50%; background:#c8c7c1; cursor:pointer; }
+    .gallery-dot[aria-current="true"] { width:20px; border-radius:5px; background:var(--green); }
+    .gallery-help { margin:10px 0 0; color:#898d94; font-size:11px; }
     .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; counter-reset:step; }
     .step { border-top:1px solid #d9d2c8; padding:18px 12px 0 0; counter-increment:step; }
     .step:before { content:"0" counter(step); color:var(--peach); font-weight:800; font-size:13px; }
@@ -91,6 +114,7 @@
     @media (max-width:760px) {
       .links { display:none; } .hero { padding:54px 0 65px; }.hero-grid { grid-template-columns:1fr;gap:34px; }.visual { min-height:420px; }.phone { transform:scale(.9) rotate(-5deg); }
       section { padding:68px 0; }.feature-grid,.module-row,.example-grid { grid-template-columns:1fr; }.steps { grid-template-columns:1fr 1fr; row-gap:24px; }.plans { grid-template-columns:1fr; }
+      section { padding:68px 0; }.feature-grid,.module-showcase,.example-grid { grid-template-columns:1fr; }.module-showcase { padding:20px; gap:22px; }.gallery { padding:18px 12px; }.steps { grid-template-columns:1fr 1fr; row-gap:24px; }.plans { grid-template-columns:1fr; }
     }
     @media (max-width:420px) { .wrap { width:min(100% - 30px,1120px); }.brand img { width:136px; }.nav-cta { font-size:12px;padding:9px 12px; }.hero .lead { font-size:16px; }.visual { min-height:370px; }.phone { transform:scale(.78) rotate(-5deg); }.floating.one { left:8px; }.floating.two { right:7px; }.steps { grid-template-columns:1fr; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
@@ -101,6 +125,7 @@
     <nav class="wrap" aria-label="주요 메뉴">
       <a class="brand" href="#home" aria-label="픽앤필 홈"><img src="assets/logo.svg" alt="픽앤필 Pic & Fill"></a>
       <div class="links"><a href="#features">기능</a><a href="#how">활용법</a><a href="#price">가격</a><a href="#download">다운로드</a></div>
+      <div class="links"><a href="#features">기능</a><a href="#modules">모듈</a><a href="#how">활용법</a><a href="#price">가격</a><a href="#download">다운로드</a></div>
       <a class="nav-cta" href="#download">앱 소개 보기</a>
     </nav>
   </header>
@@ -145,11 +170,55 @@
       </div>
     </section>
     <section class="modules" aria-labelledby="modules-title">
+    <section class="modules" id="modules" aria-labelledby="modules-title">
       <div class="wrap"><div class="section-head"><span class="eyebrow">세 가지 기록 공간</span><h2 id="modules-title">내 일상에 맞는 모듈을 골라요</h2><p>각 공간은 따로 정리되어 기록을 찾기 쉬워요.</p></div>
         <div class="module-row">
           <article class="module"><span class="tag">TRAVEL</span><h3>여행</h3><p>여행 하루하루를 사진과 장소 중심으로 정리해요.</p><ul><li>날짜·날씨·나라·도시와 장소별 사진·메모</li><li>장소 평가, 본문, 지출과 참고 링크</li><li>기록 순서대로 지도에서 이동 경로 확인</li><li>여행 전체 또는 장소 정보만 링크 공유</li><li>하루 단위 여행을 여정으로 묶고 PDF로 보관</li></ul></article>
           <article class="module"><span class="tag">MY HALF</span><h3>반쪽</h3><p>나와 소중한 사람, 반려동물의 한 주를 돌아봐요.</p><ul><li>사람·강아지·고양이·그 외 대상을 등록</li><li>요일마다 사진을 골라 한 주를 기록</li><li>특별한 날, 장소, 사진과 그날의 기분</li><li>몸무게·건강 상태·미용 같은 주간 상태</li><li>주간 기록을 링크로 나누거나 A4 PDF로 보관</li></ul></article>
           <article class="module"><span class="tag">DAILY</span><h3>일상</h3><p>여행과 반쪽 외의 다양한 일상을 목적별로 모아요.</p><ul><li>운동·등산·업무 등 나만의 사진 분류</li><li>사진을 묶어 일상·계획·정보 글 작성</li><li>정보 글에 링크·장소·영상·사진 추가</li><li>본문과 지출을 함께 정리</li><li>글자만 공유하거나 기록 페이지 링크 공유</li></ul></article>
+        <div class="module-showcases">
+          <article class="module-showcase">
+            <div class="module"><span class="tag">TRAVEL</span><h3>여행</h3><p>여행 하루하루를 사진과 장소 중심으로 정리해요.</p><ul><li>날짜·날씨·나라·도시와 장소별 사진·메모</li><li>장소 평가, 본문, 지출과 참고 링크</li><li>기록 순서대로 지도에서 이동 경로 확인</li><li>여행 전체 또는 장소 정보만 링크 공유</li><li>하루 단위 여행을 여정으로 묶고 PDF로 보관</li></ul></div>
+            <div class="gallery" data-gallery>
+              <div class="gallery-title"><strong>여행 화면 미리보기</strong><span data-count>1 / 4</span></div>
+              <div class="gallery-track" aria-label="여행 모듈 화면 슬라이드">
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▦</span><strong>여행 사진첩</strong><span>여행 사진 목록과 메모가 보이는 홈 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>사진과 짧은 메모를 모아 보는 여행 홈</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">✎</span><strong>여행 기록 작성</strong><span>날짜, 날씨, 장소와 사진 메모를 작성하는 화면을 넣어 주세요.</span></div></div></div><figcaption>장소와 사진에 평가·본문·지출·참고 링크를 더해요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">⌖</span><strong>여행 지도</strong><span>장소 핀과 이동 경로가 보이는 지도 화면을 넣어 주세요.</span></div></div></div><figcaption>기록한 장소를 지도에서 보고 이동 경로를 돌아봐요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▤</span><strong>여행 기록과 PDF</strong><span>완성한 여행 읽기 화면이나 PDF 미리보기 캡처를 넣어 주세요.</span></div></div></div><figcaption>완성한 여행을 읽고, 공유하거나 A4 PDF로 간직해요</figcaption></figure>
+              </div>
+              <div class="gallery-controls"><button class="gallery-arrow" type="button" data-prev aria-label="이전 화면">‹</button><div class="gallery-dots" aria-label="여행 화면 선택"><button class="gallery-dot" type="button" aria-label="1번째 화면" aria-current="true"></button><button class="gallery-dot" type="button" aria-label="2번째 화면" aria-current="false"></button><button class="gallery-dot" type="button" aria-label="3번째 화면" aria-current="false"></button><button class="gallery-dot" type="button" aria-label="4번째 화면" aria-current="false"></button></div><button class="gallery-arrow" type="button" data-next aria-label="다음 화면">›</button></div>
+              <p class="gallery-help">화살표나 아래 점을 눌러 화면을 넘겨 보세요. 휴대폰에서는 옆으로 밀 수 있어요.</p>
+            </div>
+          </article>
+          <article class="module-showcase">
+            <div class="module"><span class="tag">MY HALF</span><h3>반쪽</h3><p>나와 소중한 사람, 반려동물의 한 주를 돌아봐요.</p><ul><li>사람·강아지·고양이·그 외 대상을 등록</li><li>요일마다 사진을 골라 한 주를 기록</li><li>특별한 날, 장소, 사진 최대 10장과 그날의 기분</li><li>몸무게·건강 상태·미용 같은 주간 상태</li><li>주간 기록을 링크로 나누거나 A4 PDF로 보관</li></ul></div>
+            <div class="gallery" data-gallery>
+              <div class="gallery-title"><strong>반쪽 화면 미리보기</strong><span data-count>1 / 4</span></div>
+              <div class="gallery-track" aria-label="반쪽 모듈 화면 슬라이드">
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">♡</span><strong>반쪽 사진첩</strong><span>대상 선택과 사진 목록이 보이는 반쪽 홈 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>소중한 사람과 반려동물을 등록하고 사진을 모아요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▦</span><strong>요일별 주간 정리</strong><span>월요일부터 일요일까지 사진을 고르는 화면을 넣어 주세요.</span></div></div></div><figcaption>요일마다 사진을 골라 한 주의 모습을 돌아봐요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">✦</span><strong>특별한 날과 주간 상태</strong><span>특별한 일과 건강·몸무게·미용을 적는 화면을 넣어 주세요.</span></div></div></div><figcaption>특별한 날의 사진과 기분, 한 주의 상태를 기록해요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▤</span><strong>주간 기록 읽기</strong><span>완성된 주간 정리나 공유·PDF 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>완성한 주간 기록을 링크나 A4 PDF로 간직해요</figcaption></figure>
+              </div>
+              <div class="gallery-controls"><button class="gallery-arrow" type="button" data-prev aria-label="이전 화면">‹</button><div class="gallery-dots" aria-label="반쪽 화면 선택"><button class="gallery-dot" type="button" aria-label="1번째 화면" aria-current="true"></button><button class="gallery-dot" type="button" aria-label="2번째 화면" aria-current="false"></button><button class="gallery-dot" type="button" aria-label="3번째 화면" aria-current="false"></button><button class="gallery-dot" type="button" aria-label="4번째 화면" aria-current="false"></button></div><button class="gallery-arrow" type="button" data-next aria-label="다음 화면">›</button></div>
+              <p class="gallery-help">화살표나 아래 점을 눌러 화면을 넘겨 보세요. 휴대폰에서는 옆으로 밀 수 있어요.</p>
+            </div>
+          </article>
+          <article class="module-showcase">
+            <div class="module"><span class="tag">DAILY</span><h3>일상</h3><p>여행과 반쪽 외의 다양한 일상을 목적별로 모아요.</p><ul><li>운동·등산·업무 등 나만의 사진 분류</li><li>사진을 묶어 일상·계획·정보 글 작성</li><li>정보 글에 링크·장소·영상·사진 추가</li><li>본문과 지출을 함께 정리</li><li>글자만 공유하거나 기록 페이지 링크 공유</li></ul></div>
+            <div class="gallery" data-gallery>
+              <div class="gallery-title"><strong>일상 화면 미리보기</strong><span data-count>1 / 4</span></div>
+              <div class="gallery-track" aria-label="일상 모듈 화면 슬라이드">
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▦</span><strong>일상 사진첩</strong><span>분류와 사진 목록이 보이는 일상 홈 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>운동·등산·업무 등 내 분류로 사진을 모아요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">✎</span><strong>일상 글 쓰기</strong><span>사진을 묶어 일상 기록이나 계획을 작성하는 화면을 넣어 주세요.</span></div></div></div><figcaption>사진 여러 장으로 기록을 만들고 할 일을 정리해요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">＋</span><strong>정보 모아 담기</strong><span>링크, 장소, 영상, 사진을 추가하는 화면을 넣어 주세요.</span></div></div></div><figcaption>필요한 정보와 본문·지출을 한 글에 모아 둬요</figcaption></figure>
+                <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">↗</span><strong>일상 글 공유</strong><span>완성한 글과 공유 메뉴 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>글자만 보내거나 기록 페이지 전체를 링크로 나눠요</figcaption></figure>
+              </div>
+              <div class="gallery-controls"><button class="gallery-arrow" type="button" data-prev aria-label="이전 화면">‹</button><div class="gallery-dots" aria-label="일상 화면 선택"><button class="gallery-dot" type="button" aria-label="1번째 화면" aria-current="true"></button><button class="gallery-dot" type="button" aria-label="2번째 화면" aria-current="false"></button><button class="gallery-dot" type="button" aria-label="3번째 화면" aria-current="false"></button><button class="gallery-dot" type="button" aria-label="4번째 화면" aria-current="false"></button></div><button class="gallery-arrow" type="button" data-next aria-label="다음 화면">›</button></div>
+              <p class="gallery-help">화살표나 아래 점을 눌러 화면을 넘겨 보세요. 휴대폰에서는 옆으로 밀 수 있어요.</p>
+            </div>
+          </article>
         </div>
         <p class="pricing-note">무료 요금제는 반쪽 1명, 플러스는 최대 5명까지 등록할 수 있어요. 반쪽은 사람·강아지·고양이·그 외 유형으로 구분합니다.</p>
       </div>
@@ -179,5 +248,31 @@
     </section>
   </main>
   <footer><div class="wrap"><span>© 2026 Pic & Fill · 픽앤필</span><span>순간의 기록, 생각 한방울</span></div></footer>
+  <script>
+    document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+      const track = gallery.querySelector('.gallery-track');
+      const slides = [...gallery.querySelectorAll('.gallery-slide')];
+      const dots = [...gallery.querySelectorAll('.gallery-dot')];
+      const count = gallery.querySelector('[data-count]');
+      let active = 0;
+      const show = (index) => {
+        active = (index + slides.length) % slides.length;
+        track.scrollTo({ left: slides[active].offsetLeft, behavior: 'smooth' });
+        dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === active)));
+        count.textContent = `${active + 1} / ${slides.length}`;
+      };
+      gallery.querySelector('[data-prev]').addEventListener('click', () => show(active - 1));
+      gallery.querySelector('[data-next]').addEventListener('click', () => show(active + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+      track.addEventListener('scroll', () => {
+        const next = Math.round(track.scrollLeft / track.clientWidth);
+        if (next !== active && slides[next]) {
+          active = next;
+          dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === active)));
+          count.textContent = `${active + 1} / ${slides.length}`;
+        }
+      }, { passive: true });
+    });
+  </script>
 </body>
 </html>
