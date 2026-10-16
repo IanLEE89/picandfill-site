@@ -3,37 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fffaf3">
+  <meta name="theme-color" content="#fff4e6">
   <meta name="description" content="사진에 장소와 마음을 메모하고, 여행·반쪽·일상으로 나누어 간직하는 나만의 기록 앱 픽앤필.">
   <title>픽앤필 — 순간을 담고, 천천히 채우는 기록</title>
   <style>
-    :root { --ink:#24304a; --muted:#6f7580; --cream:#fffaf3; --peach:#e0855a; --green:#1f6b5e; --line:#e9e3da; --paper:#fff; }
+    :root { --ink:#24304a; --muted:#687184; --cream:#fff4e6; --peach:#e0855a; --green:#1f6b5e; --half:#ad5530; --daily:#526894; --line:#e7ded2; --paper:#fff; }
     * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; scroll-padding-top:88px; }
-    body { margin:0; color:var(--ink); background:var(--cream); font-family:Inter,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; line-height:1.65; }
+    html { scroll-behavior:smooth; scroll-padding-top:112px; }
+    body { margin:0; color:var(--ink); background:var(--cream); font-family:Inter,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif; line-height:1.7; }
     a { color:inherit; text-decoration:none; }
-    .wrap { width:min(1120px, calc(100% - 44px)); margin:auto; }
-    header { position:sticky; top:0; z-index:5; background:rgba(255,250,243,.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(233,227,218,.75); }
+    button { font:inherit; }
+    :focus-visible { outline:3px solid var(--green); outline-offset:4px; }
+    .wrap { width:min(1160px, calc(100% - 48px)); margin:auto; }
+    header { position:sticky; top:0; z-index:5; background:rgba(255,244,230,.94); backdrop-filter:blur(14px); border-bottom:1px solid rgba(231,222,210,.9); }
     nav { height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .brand img { display:block; width:154px; height:auto; }
-    .links { display:flex; align-items:center; gap:27px; font-size:14px; color:#51596b; }
-    .links a:hover { color:var(--green); }
-    .nav-cta,.button { display:inline-flex; justify-content:center; align-items:center; border-radius:999px; padding:12px 20px; font-weight:700; background:var(--ink); color:white; }
+    .links { display:flex; align-items:center; gap:25px; font-size:14px; color:#51596b; }
+    .links a { transition:color .18s ease; }.links a:hover { color:var(--green); }
+    .nav-cta,.button { display:inline-flex; justify-content:center; align-items:center; border-radius:999px; padding:12px 20px; font-weight:700; background:var(--ink); color:white; transition:transform .18s ease,background .18s ease; }
+    .nav-cta:hover,.button:hover { transform:translateY(-2px); background:var(--green); }
     .nav-cta { padding:10px 16px; font-size:13px; }
-    .hero { padding:84px 0 92px; overflow:hidden; }
-    .hero-grid { display:grid; grid-template-columns:1fr .88fr; align-items:center; gap:64px; }
-    .eyebrow { display:inline-flex; align-items:center; gap:8px; color:var(--green); font-weight:700; font-size:13px; letter-spacing:.04em; }
+    .hero { padding:96px 0 104px; overflow:hidden; }
+    .hero-grid { display:grid; grid-template-columns:1fr .88fr; align-items:center; gap:72px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; color:var(--green); font-weight:700; font-size:13px; letter-spacing:.035em; }
     .eyebrow:before { content:""; width:8px; height:8px; background:var(--peach); border-radius:50%; }
-    h1 { font-size:clamp(42px,6vw,72px); line-height:1.18; letter-spacing:-.055em; margin:20px 0; }
+    h1 { font-size:clamp(44px,6vw,76px); line-height:1.16; letter-spacing:-.06em; margin:20px 0; }
     h1 em { color:var(--green); font-style:normal; }
-    .lead { max-width:500px; font-size:18px; color:#596174; margin:0 0 28px; }
+    .lead { max-width:510px; font-size:18px; color:#525d72; margin:0 0 30px; }
     .hero-actions { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-    .button { padding:15px 23px; }
-    .button.light { background:transparent; color:var(--ink); border:1px solid #cfc8bd; }
-    .hint { font-size:12px; color:#898d94; margin-top:14px; }
-    .visual { min-height:480px; border-radius:38px; position:relative; display:grid; place-items:center; background:radial-gradient(circle at 76% 20%,#f5c09b 0 8%,transparent 8.5%),linear-gradient(145deg,#e3eee7,#f8e5d6 78%); }
-    .sun { width:270px; height:270px; border-radius:50%; background:rgba(255,250,243,.45); position:absolute; top:52px; right:38px; }
-    .phone { position:relative; width:248px; height:390px; border:8px solid #26334c; border-radius:34px; background:#fffaf3; box-shadow:0 24px 60px #24304a33; padding:20px 14px; transform:rotate(-5deg); }
+    .button { padding:15px 24px; }
+    .button.light { background:transparent; color:var(--ink); border:1px solid #cfc8bd; }.button.light:hover { background:white; }
+    .hint { font-size:12px; color:#687184; margin-top:14px; }
+    .visual { min-height:510px; border-radius:44px; position:relative; display:grid; place-items:center; background:radial-gradient(circle at 78% 20%,#f4c4a4 0 8%,transparent 8.5%),linear-gradient(145deg,#e4eee7,#f7e4d6 78%); box-shadow:inset 0 0 0 1px #24304a08; }
+    .sun { width:285px; height:285px; border-radius:50%; background:rgba(255,244,230,.58); position:absolute; top:48px; right:38px; }
+    .phone { position:relative; width:248px; height:390px; border:8px solid #24304a; border-radius:34px; background:#fff4e6; box-shadow:0 28px 55px #24304a36; padding:20px 14px; transform:rotate(-5deg); }
     .phone-top { display:flex; justify-content:space-between; font-size:12px; font-weight:700; margin:4px 3px 14px; }
     .phone-title { font-size:23px; font-weight:800; margin:0 3px 12px; }
     .photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
@@ -43,59 +46,63 @@
     .photo:nth-child(2) { background:linear-gradient(150deg,#f0b383,#e8d4b3); }
     .photo:nth-child(3) { background:linear-gradient(150deg,#7896a1,#d6d5c6); }
     .photo:nth-child(4) { background:linear-gradient(150deg,#e1b598,#9b7a69); }
-    .note { margin-top:12px; padding:11px; border-radius:13px; background:white; font-size:11px; color:#646b78; }
+    .note { margin-top:12px; padding:11px; border-radius:13px; background:white; font-size:11px; color:#596174; box-shadow:0 4px 12px #24304a0c; }
     .note b { color:var(--ink); display:block; font-size:12px; margin-bottom:2px; }
-    .floating { position:absolute; background:#fff; border-radius:16px; padding:13px 17px; box-shadow:0 12px 30px #24304a22; font-size:13px; font-weight:700; }
+    .floating { position:absolute; background:#fff; border:1px solid #ffffffa8; border-radius:15px 15px 15px 4px; padding:13px 17px; box-shadow:0 14px 32px #24304a22; font-size:13px; font-weight:700; }
     .floating.one { left:24px; bottom:92px; transform:rotate(-4deg); }
     .floating.two { right:18px; bottom:54px; transform:rotate(4deg); }
-    section { padding:90px 0; }
-    .section-head { max-width:660px; margin:0 auto 42px; text-align:center; }
-    .section-head h2 { font-size:clamp(30px,4vw,44px); line-height:1.25; letter-spacing:-.04em; margin:12px 0; }
+    section { padding:104px 0; }
+    .section-head { max-width:700px; margin:0 auto 48px; text-align:center; }
+    .section-head h2 { font-size:clamp(32px,4vw,48px); line-height:1.23; letter-spacing:-.05em; margin:13px 0; }
     .section-head p { color:var(--muted); margin:0; }
     .feature-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-    .card { background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:26px; }
-    .icon { width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:#f8e7dc;font-size:22px;margin-bottom:18px; }
-    .card:nth-child(2) .icon { background:#e3efe8; }.card:nth-child(3) .icon { background:#e8eafa; }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:26px; box-shadow:0 8px 24px #24304a08; transition:transform .2s ease,box-shadow .2s ease; }
+    .card:hover { transform:translateY(-4px); box-shadow:0 16px 34px #24304a12; }
+    .icon { width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:#f8e7dc;font-size:22px;margin-bottom:18px; }
+    .card:nth-child(2) .icon { background:#e3efe8; }.card:nth-child(3) .icon { background:#e8eafa; }.card:nth-child(4) .icon { background:#f3e8d4; }
     .card h3 { margin:0 0 8px; font-size:19px; }.card p { margin:0;color:var(--muted);font-size:14px; }
     .privacy-note { margin-top:20px; padding:18px 22px; border-radius:16px; background:#e9f1eb; color:#385b50; font-size:14px; }
     .example-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
     .example { padding:20px; background:#fff; border:1px solid var(--line); border-radius:18px; }
     .example b { display:block; margin-bottom:5px; font-size:16px; }.example p { margin:0; color:var(--muted); font-size:14px; }
-    .modules { background:#f4efe7; }
+    .modules { background:#f3eee5; }
     .module-showcases { display:grid; gap:20px; }
-    .module-showcase { display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:center; padding:30px; border:1px solid var(--line); border-radius:25px; background:white; }
+    .module-showcase { --module-color:var(--green); display:grid; grid-template-columns:.85fr 1.15fr; gap:34px; align-items:center; padding:32px; border:1px solid var(--line); border-radius:25px; background:white; box-shadow:0 10px 28px #24304a08; }
+    .module-showcase:nth-child(2) { --module-color:var(--half); }.module-showcase:nth-child(3) { --module-color:var(--daily); }
     .module { padding:0; }
-    .module .tag { font-size:12px; font-weight:800; letter-spacing:.05em; color:var(--green); }
-    .module:nth-child(2) .tag { color:#ad5530; }.module:nth-child(3) .tag { color:#526894; }
-    .module h3 { margin:8px 0; font-size:22px; }.module p { margin:0;color:var(--muted);font-size:14px; }
+    .module .tag { display:inline-flex; padding:5px 10px; border-radius:999px; background:#e5efe8; font-size:11px; font-weight:800; letter-spacing:.06em; color:var(--green); }
+    .module-showcase:nth-child(2) .tag { background:#f7e9df; color:var(--half); }.module-showcase:nth-child(3) .tag { background:#e9edf7; color:var(--daily); }
+    .module h3 { margin:12px 0 7px; font-size:26px; letter-spacing:-.04em; }.module p { margin:0;color:var(--muted);font-size:14px; }
     .module ul { list-style:none; margin:16px 0 0; padding:0; }
     .module li { padding:8px 0; border-top:1px solid #f0ece6; color:#596174; font-size:13px; }
-    .module li:before { content:"·"; color:var(--peach); font-weight:900; margin-right:8px; }
-    .gallery { min-width:0; padding:22px 18px 18px; border-radius:20px; background:#f7f3ed; text-align:center; }
+    .module li:before { content:"·"; color:var(--module-color); font-weight:900; margin-right:8px; }
+    .gallery { min-width:0; padding:24px 18px 18px; border-radius:20px; background:#eff4ef; text-align:center; }
+    .module-showcase:nth-child(2) .gallery { background:#f8efea; }.module-showcase:nth-child(3) .gallery { background:#eef0f7; }
     .gallery-title { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:0 auto 14px; max-width:390px; color:var(--muted); font-size:12px; }
     .gallery-title strong { color:var(--ink); font-size:13px; }
     .gallery-track { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-x:contain; }
     .gallery-track::-webkit-scrollbar { display:none; }
-    .gallery-slide { flex:0 0 100%; scroll-snap-align:center; }
-    .device-frame { width:min(100%,252px); margin:0 auto; padding:9px; border:7px solid #26334c; border-radius:35px; background:#26334c; box-shadow:0 16px 34px #24304a20; }
-    .device-screen { position:relative; display:grid; place-items:center; width:100%; aspect-ratio:9/19.5; overflow:hidden; border-radius:23px; background:#fffaf3; }
-    .screen-placeholder { display:grid; place-items:center; gap:12px; width:100%; height:100%; padding:24px; color:#687184; background:linear-gradient(155deg,#fffaf3,#eef1e8); }
-    .screen-placeholder .placeholder-icon { display:grid; place-items:center; width:52px; height:52px; border-radius:17px; background:#e8eee6; color:var(--green); font-size:24px; }
+    .gallery-slide { flex:0 0 100%; scroll-snap-align:center; scroll-snap-stop:always; }
+    .device-frame { position:relative; width:min(100%,252px); margin:0 auto; padding:9px; border:7px solid #24304a; border-radius:35px; background:#24304a; box-shadow:0 18px 36px #24304a20; }
+    .device-frame:before { content:""; position:absolute; z-index:2; top:13px; left:50%; width:66px; height:17px; border-radius:12px; background:#24304a; transform:translateX(-50%); }
+    .device-screen { position:relative; display:grid; place-items:center; width:100%; aspect-ratio:9/19.5; overflow:hidden; border-radius:23px; background:var(--cream); }
+    .screen-placeholder { display:grid; place-items:center; gap:12px; width:100%; height:100%; padding:24px; color:#687184; background:linear-gradient(155deg,#fff4e6,#eef1e8); }
+    .screen-placeholder .placeholder-icon { display:grid; place-items:center; width:52px; height:52px; border-radius:17px; background:#e8eee6; color:var(--module-color); font-size:24px; }
     .screen-placeholder strong { color:var(--ink); font-size:15px; }
     .screen-placeholder span { max-width:155px; font-size:11px; line-height:1.5; }
     .screen-image { display:block; width:100%; height:100%; object-fit:cover; }
     .gallery-slide figcaption { min-height:48px; margin:12px auto 0; max-width:340px; color:#596174; font-size:13px; }
     .gallery-controls { display:flex; justify-content:center; align-items:center; gap:14px; margin-top:8px; }
-    .gallery-arrow { display:grid; place-items:center; width:34px; height:34px; border:1px solid #d7d0c5; border-radius:50%; background:white; color:var(--ink); font-size:18px; cursor:pointer; }
+    .gallery-arrow { display:grid; place-items:center; width:44px; height:44px; border:1px solid #d7d0c5; border-radius:50%; background:white; color:var(--ink); font-size:20px; cursor:pointer; }
     .gallery-dots { display:flex; gap:7px; }
     .gallery-dot { width:8px; height:8px; padding:0; border:0; border-radius:50%; background:#c8c7c1; cursor:pointer; }
-    .gallery-dot[aria-current="true"] { width:20px; border-radius:5px; background:var(--green); }
+    .gallery-dot[aria-current="true"] { width:20px; border-radius:5px; background:var(--module-color); }
     .gallery-help { margin:10px 0 0; color:#898d94; font-size:11px; }
     .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; counter-reset:step; }
     .step { border-top:1px solid #d9d2c8; padding:18px 12px 0 0; counter-increment:step; }
-    .step:before { content:"0" counter(step); color:var(--peach); font-weight:800; font-size:13px; }
+    .step:before { content:"0" counter(step); color:var(--green); font-weight:800; font-size:13px; }
     .step h3 { font-size:17px; margin:9px 0 5px; }.step p { margin:0;color:var(--muted);font-size:14px; }
-    .pricing { background:#f4efe7; }
+    .pricing { background:#f3eee5; }
     .plans { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:800px; margin:auto; }
     .plan { background:white; border:1px solid var(--line); border-radius:24px; padding:30px; }
     .plan.plus { border:2px solid var(--green); position:relative; }
@@ -104,17 +111,21 @@
     .plan ul { list-style:none;padding:0;margin:22px 0 0; }.plan li { padding:9px 0;border-top:1px solid #f0ece6;font-size:14px; }
     .plan li:before { content:"✓"; color:var(--green); font-weight:800; margin-right:9px; }
     .pricing-note { text-align:center;color:var(--muted);font-size:12px;margin:22px auto 0;max-width:700px; }
-    .download { text-align:center; padding:98px 0 105px; background:var(--ink); color:white; }
+    .download { text-align:center; padding:108px 0 112px; background:var(--ink); color:white; }
     .download h2 { font-size:clamp(32px,5vw,52px); margin:0 0 12px; letter-spacing:-.04em; }.download p { color:#d2d6df; margin:0 auto 24px; }
     .download .button { background:#f4a57a;color:var(--ink); }.download .hint { color:#bdc3d0; }
     footer { padding:26px 0; font-size:12px;color:#777e8a; }
     footer .wrap { display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap; }
     @media (max-width:760px) {
-      .links { display:none; } .hero { padding:54px 0 65px; }.hero-grid { grid-template-columns:1fr;gap:34px; }.visual { min-height:420px; }.phone { transform:scale(.9) rotate(-5deg); }
+      nav { min-height:72px; height:auto; padding:12px 0 9px; flex-wrap:wrap; row-gap:8px; }
+      .links { order:3; display:flex; width:100%; gap:22px; overflow-x:auto; padding:3px 0 4px; white-space:nowrap; scrollbar-width:none; }
+      .links::-webkit-scrollbar { display:none; }
+      .nav-cta { margin-left:auto; }
+      .hero { padding:54px 0 65px; }.hero-grid { grid-template-columns:1fr;gap:34px; }.visual { min-height:420px; }.phone { transform:scale(.9) rotate(-5deg); }
       section { padding:68px 0; }.feature-grid,.module-showcase,.example-grid { grid-template-columns:1fr; }.module-showcase { padding:20px; gap:22px; }.gallery { padding:18px 12px; }.steps { grid-template-columns:1fr 1fr; row-gap:24px; }.plans { grid-template-columns:1fr; }
     }
     @media (max-width:420px) { .wrap { width:min(100% - 30px,1120px); }.brand img { width:136px; }.nav-cta { font-size:12px;padding:9px 12px; }.hero .lead { font-size:16px; }.visual { min-height:370px; }.phone { transform:scale(.78) rotate(-5deg); }.floating.one { left:8px; }.floating.two { right:7px; }.steps { grid-template-columns:1fr; } }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.gallery-track { scroll-behavior:auto; }.nav-cta,.button,.card { transition:none; } }
   </style>
 </head>
 <body>
@@ -170,9 +181,9 @@
         <div class="module-showcases">
           <article class="module-showcase">
             <div class="module"><span class="tag">TRAVEL</span><h3>여행</h3><p>여행 하루하루를 사진과 장소 중심으로 정리해요.</p><ul><li>날짜·날씨·나라·도시와 장소별 사진·메모</li><li>장소 평가, 본문, 지출과 참고 링크</li><li>기록 순서대로 지도에서 이동 경로 확인</li><li>여행 전체 또는 장소 정보만 링크 공유</li><li>하루 단위 여행을 여정으로 묶고 PDF로 보관</li></ul></div>
-            <div class="gallery" data-gallery>
-              <div class="gallery-title"><strong>여행 화면 미리보기</strong><span data-count>1 / 4</span></div>
-              <div class="gallery-track" aria-label="여행 모듈 화면 슬라이드">
+            <div class="gallery" data-gallery role="region" aria-label="여행 앱 화면 미리보기">
+              <div class="gallery-title"><strong>여행 화면 미리보기</strong><span data-count aria-live="polite">1 / 4</span></div>
+              <div class="gallery-track" role="group" aria-roledescription="carousel" aria-label="여행 모듈 화면 슬라이드" tabindex="0">
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▦</span><strong>여행 사진첩</strong><span>여행 사진 목록과 메모가 보이는 홈 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>사진과 짧은 메모를 모아 보는 여행 홈</figcaption></figure>
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">✎</span><strong>여행 기록 작성</strong><span>날짜, 날씨, 장소와 사진 메모를 작성하는 화면을 넣어 주세요.</span></div></div></div><figcaption>장소와 사진에 평가·본문·지출·참고 링크를 더해요</figcaption></figure>
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">⌖</span><strong>여행 지도</strong><span>장소 핀과 이동 경로가 보이는 지도 화면을 넣어 주세요.</span></div></div></div><figcaption>기록한 장소를 지도에서 보고 이동 경로를 돌아봐요</figcaption></figure>
@@ -184,9 +195,9 @@
           </article>
           <article class="module-showcase">
             <div class="module"><span class="tag">MY HALF</span><h3>반쪽</h3><p>나와 소중한 사람, 반려동물의 한 주를 돌아봐요.</p><ul><li>사람·강아지·고양이·그 외 대상을 등록</li><li>요일마다 사진을 골라 한 주를 기록</li><li>특별한 날, 장소, 사진 최대 10장과 그날의 기분</li><li>몸무게·건강 상태·미용 같은 주간 상태</li><li>주간 기록을 링크로 나누거나 A4 PDF로 보관</li></ul></div>
-            <div class="gallery" data-gallery>
-              <div class="gallery-title"><strong>반쪽 화면 미리보기</strong><span data-count>1 / 4</span></div>
-              <div class="gallery-track" aria-label="반쪽 모듈 화면 슬라이드">
+            <div class="gallery" data-gallery role="region" aria-label="반쪽 앱 화면 미리보기">
+              <div class="gallery-title"><strong>반쪽 화면 미리보기</strong><span data-count aria-live="polite">1 / 4</span></div>
+              <div class="gallery-track" role="group" aria-roledescription="carousel" aria-label="반쪽 모듈 화면 슬라이드" tabindex="0">
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">♡</span><strong>반쪽 사진첩</strong><span>대상 선택과 사진 목록이 보이는 반쪽 홈 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>소중한 사람과 반려동물을 등록하고 사진을 모아요</figcaption></figure>
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▦</span><strong>요일별 주간 정리</strong><span>월요일부터 일요일까지 사진을 고르는 화면을 넣어 주세요.</span></div></div></div><figcaption>요일마다 사진을 골라 한 주의 모습을 돌아봐요</figcaption></figure>
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">✦</span><strong>특별한 날과 주간 상태</strong><span>특별한 일과 건강·몸무게·미용을 적는 화면을 넣어 주세요.</span></div></div></div><figcaption>특별한 날의 사진과 기분, 한 주의 상태를 기록해요</figcaption></figure>
@@ -198,9 +209,9 @@
           </article>
           <article class="module-showcase">
             <div class="module"><span class="tag">DAILY</span><h3>일상</h3><p>여행과 반쪽 외의 다양한 일상을 목적별로 모아요.</p><ul><li>운동·등산·업무 등 나만의 사진 분류</li><li>사진을 묶어 일상·계획·정보 글 작성</li><li>정보 글에 링크·장소·영상·사진 추가</li><li>본문과 지출을 함께 정리</li><li>글자만 공유하거나 기록 페이지 링크 공유</li></ul></div>
-            <div class="gallery" data-gallery>
-              <div class="gallery-title"><strong>일상 화면 미리보기</strong><span data-count>1 / 4</span></div>
-              <div class="gallery-track" aria-label="일상 모듈 화면 슬라이드">
+            <div class="gallery" data-gallery role="region" aria-label="일상 앱 화면 미리보기">
+              <div class="gallery-title"><strong>일상 화면 미리보기</strong><span data-count aria-live="polite">1 / 4</span></div>
+              <div class="gallery-track" role="group" aria-roledescription="carousel" aria-label="일상 모듈 화면 슬라이드" tabindex="0">
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">▦</span><strong>일상 사진첩</strong><span>분류와 사진 목록이 보이는 일상 홈 화면 캡처를 넣어 주세요.</span></div></div></div><figcaption>운동·등산·업무 등 내 분류로 사진을 모아요</figcaption></figure>
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">✎</span><strong>일상 글 쓰기</strong><span>사진을 묶어 일상 기록이나 계획을 작성하는 화면을 넣어 주세요.</span></div></div></div><figcaption>사진 여러 장으로 기록을 만들고 할 일을 정리해요</figcaption></figure>
                 <figure class="gallery-slide"><div class="device-frame"><div class="device-screen"><div class="screen-placeholder"><span class="placeholder-icon">＋</span><strong>정보 모아 담기</strong><span>링크, 장소, 영상, 사진을 추가하는 화면을 넣어 주세요.</span></div></div></div><figcaption>필요한 정보와 본문·지출을 한 글에 모아 둬요</figcaption></figure>
@@ -248,13 +259,17 @@
       let active = 0;
       const show = (index) => {
         active = (index + slides.length) % slides.length;
-        track.scrollTo({ left: slides[active].offsetLeft, behavior: 'smooth' });
+        track.scrollTo({ left: active * track.clientWidth, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
         dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === active)));
         count.textContent = `${active + 1} / ${slides.length}`;
       };
       gallery.querySelector('[data-prev]').addEventListener('click', () => show(active - 1));
       gallery.querySelector('[data-next]').addEventListener('click', () => show(active + 1));
       dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+      track.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') show(active + 1);
+        if (event.key === 'ArrowLeft') show(active - 1);
+      });
       track.addEventListener('scroll', () => {
         const next = Math.round(track.scrollLeft / track.clientWidth);
         if (next !== active && slides[next]) {
