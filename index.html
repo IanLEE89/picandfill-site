@@ -62,8 +62,6 @@
     .example { padding:20px; background:#fff; border:1px solid var(--line); border-radius:18px; }
     .example b { display:block; margin-bottom:5px; font-size:16px; }.example p { margin:0; color:var(--muted); font-size:14px; }
     .modules { background:#f4efe7; }
-    .module-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .module { padding:25px; border-radius:22px; background:white; }
     .module-showcases { display:grid; gap:20px; }
     .module-showcase { display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:center; padding:30px; border:1px solid var(--line); border-radius:25px; background:white; }
     .module { padding:0; }
@@ -113,7 +111,6 @@
     footer .wrap { display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap; }
     @media (max-width:760px) {
       .links { display:none; } .hero { padding:54px 0 65px; }.hero-grid { grid-template-columns:1fr;gap:34px; }.visual { min-height:420px; }.phone { transform:scale(.9) rotate(-5deg); }
-      section { padding:68px 0; }.feature-grid,.module-row,.example-grid { grid-template-columns:1fr; }.steps { grid-template-columns:1fr 1fr; row-gap:24px; }.plans { grid-template-columns:1fr; }
       section { padding:68px 0; }.feature-grid,.module-showcase,.example-grid { grid-template-columns:1fr; }.module-showcase { padding:20px; gap:22px; }.gallery { padding:18px 12px; }.steps { grid-template-columns:1fr 1fr; row-gap:24px; }.plans { grid-template-columns:1fr; }
     }
     @media (max-width:420px) { .wrap { width:min(100% - 30px,1120px); }.brand img { width:136px; }.nav-cta { font-size:12px;padding:9px 12px; }.hero .lead { font-size:16px; }.visual { min-height:370px; }.phone { transform:scale(.78) rotate(-5deg); }.floating.one { left:8px; }.floating.two { right:7px; }.steps { grid-template-columns:1fr; } }
@@ -124,7 +121,6 @@
   <header>
     <nav class="wrap" aria-label="주요 메뉴">
       <a class="brand" href="#home" aria-label="픽앤필 홈"><img src="assets/logo.svg" alt="픽앤필 Pic & Fill"></a>
-      <div class="links"><a href="#features">기능</a><a href="#how">활용법</a><a href="#price">가격</a><a href="#download">다운로드</a></div>
       <div class="links"><a href="#features">기능</a><a href="#modules">모듈</a><a href="#how">활용법</a><a href="#price">가격</a><a href="#download">다운로드</a></div>
       <a class="nav-cta" href="#download">앱 소개 보기</a>
     </nav>
@@ -169,13 +165,8 @@
         </div>
       </div>
     </section>
-    <section class="modules" aria-labelledby="modules-title">
     <section class="modules" id="modules" aria-labelledby="modules-title">
       <div class="wrap"><div class="section-head"><span class="eyebrow">세 가지 기록 공간</span><h2 id="modules-title">내 일상에 맞는 모듈을 골라요</h2><p>각 공간은 따로 정리되어 기록을 찾기 쉬워요.</p></div>
-        <div class="module-row">
-          <article class="module"><span class="tag">TRAVEL</span><h3>여행</h3><p>여행 하루하루를 사진과 장소 중심으로 정리해요.</p><ul><li>날짜·날씨·나라·도시와 장소별 사진·메모</li><li>장소 평가, 본문, 지출과 참고 링크</li><li>기록 순서대로 지도에서 이동 경로 확인</li><li>여행 전체 또는 장소 정보만 링크 공유</li><li>하루 단위 여행을 여정으로 묶고 PDF로 보관</li></ul></article>
-          <article class="module"><span class="tag">MY HALF</span><h3>반쪽</h3><p>나와 소중한 사람, 반려동물의 한 주를 돌아봐요.</p><ul><li>사람·강아지·고양이·그 외 대상을 등록</li><li>요일마다 사진을 골라 한 주를 기록</li><li>특별한 날, 장소, 사진과 그날의 기분</li><li>몸무게·건강 상태·미용 같은 주간 상태</li><li>주간 기록을 링크로 나누거나 A4 PDF로 보관</li></ul></article>
-          <article class="module"><span class="tag">DAILY</span><h3>일상</h3><p>여행과 반쪽 외의 다양한 일상을 목적별로 모아요.</p><ul><li>운동·등산·업무 등 나만의 사진 분류</li><li>사진을 묶어 일상·계획·정보 글 작성</li><li>정보 글에 링크·장소·영상·사진 추가</li><li>본문과 지출을 함께 정리</li><li>글자만 공유하거나 기록 페이지 링크 공유</li></ul></article>
         <div class="module-showcases">
           <article class="module-showcase">
             <div class="module"><span class="tag">TRAVEL</span><h3>여행</h3><p>여행 하루하루를 사진과 장소 중심으로 정리해요.</p><ul><li>날짜·날씨·나라·도시와 장소별 사진·메모</li><li>장소 평가, 본문, 지출과 참고 링크</li><li>기록 순서대로 지도에서 이동 경로 확인</li><li>여행 전체 또는 장소 정보만 링크 공유</li><li>하루 단위 여행을 여정으로 묶고 PDF로 보관</li></ul></div>
